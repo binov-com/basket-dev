@@ -22,6 +22,11 @@
   font-size: large;
 }
 
+.ui.card > .extra,
+.ui.cards > .card > .extra {
+  font-size: 1.5em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

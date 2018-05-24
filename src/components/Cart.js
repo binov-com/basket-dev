@@ -10,6 +10,7 @@ class Cart extends Component {
     const { cart } = this.props.cart;
 
     const items = cart.sort().map(item => ({
+      id: item.id,
       title: products.find(product => product.id === item.id).title,
       price: products.find(product => product.id === item.id).price,
       quantity: item.quantity,
@@ -29,7 +30,6 @@ class Cart extends Component {
           <Feed.Event key={item.id}>
             <Feed.Label image={`/images/${item.image}.jpg`} />
             <Feed.Content>
-
               <Feed.Date content={item.title} />
               <Feed.Summary>
                 {item.price.toFixed(2)} € x {item.quantity} = {(item.quantity * item.price).toFixed(2)} €
