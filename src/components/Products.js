@@ -4,19 +4,27 @@ import { connect } from 'react-redux';
 import { Button, Card, Image, Icon, Loader } from 'semantic-ui-react';
 
 import { getProducts } from '../actions/productActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 
 class Products extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onAddClick = this.onAddClick.bind(this);
+    this.onRemoveClick = this.onRemoveClick.bind(this);
+  }
+
   componentDidMount() {
     this.props.getProducts();
   }
 
   onRemoveClick(e, data) {
-    this.props.getProducts();
+    this.props.removeFromCart(data.value);
   }
 
   onAddClick(e, data) {
-    this.props.getProducts();
+    this.props.addToCart(data.value);
   }
 
   render() {
@@ -60,6 +68,8 @@ class Products extends Component {
 
 Products.propTypes = {
   getProducts: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired,
 };
 
@@ -67,5 +77,5 @@ const mapStateToProps = state => ({
   product: state.product,
 });
 
-export default connect(mapStateToProps, { getProducts })(Products);
+export default connect(mapStateToProps, { getProducts, addToCart, removeFromCart })(Products);
 

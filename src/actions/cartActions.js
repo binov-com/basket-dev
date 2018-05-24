@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from './actionTypes';
+import { ADD_TO_CART, REMOVE_FROM_CART } from './actionTypes';
 
 
 export const addToCart = productId => (dispatch) => {
@@ -8,9 +8,9 @@ export const addToCart = productId => (dispatch) => {
   });
 };
 
-export const removeToCart = productId => (dispatch) => {
+export const removeFromCart = productId => (dispatch) => {
   dispatch({
-    type: REMOVE_TO_CART,
+    type: REMOVE_FROM_CART,
     payload: productId,
   });
 };
