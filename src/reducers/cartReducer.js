@@ -17,7 +17,9 @@ export default function (state = initialState, action) {
         ],
       };
     case REMOVE_FROM_CART:
-      itemQuantity = (state.cart.find(item => item.id === action.payload) && state.cart.find(item => item.id === action.payload).quantity > 0) ?
+      itemQuantity = (
+        state.cart.find(item => item.id === action.payload) &&
+            state.cart.find(item => item.id === action.payload).quantity > 0) ?
         state.cart.find(item => item.id === action.payload).quantity - 1 : 0;
       return {
         ...state,

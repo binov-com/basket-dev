@@ -5,6 +5,7 @@ import logo from './logo.png';
 import './App.css';
 
 import Products from './components/Products';
+import Cart from './components/Cart';
 
 class App extends Component {
   render() {
@@ -22,7 +23,9 @@ class App extends Component {
               <Grid.Column width={12}>
                 <Products />
               </Grid.Column>
-              <Grid.Column width={4} />
+              <Grid.Column width={4}>
+                <Cart />
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </Container>

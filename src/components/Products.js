@@ -44,7 +44,7 @@ class Products extends Component {
                 {product.title}
               </Card.Header>
               <Card.Meta>
-                {`Price: ${product.price}`}
+                {`Price: ${product.price.toFixed(2)} €`}
               </Card.Meta>
 
             </Card.Content>
