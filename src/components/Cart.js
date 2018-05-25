@@ -41,7 +41,7 @@ class Cart extends Component {
             <Feed.Content>
               <Feed.Date content={item.title} />
               <Feed.Summary>
-                {item.price.toFixed(2)} € x {item.quantity} = {(item.quantity * item.price).toFixed(2)} €
+                {item.price.toFixed(2)} € x {item.quantity} = {item.total.toFixed(2)} €
               </Feed.Summary >
             </Feed.Content>
           </Feed.Event>
