@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Feed, Icon } from 'semantic-ui-react';
+import computeDiscount from '../helpers/discount';
 
 
 class Cart extends Component {
@@ -9,16 +10,24 @@ class Cart extends Component {
     const { products } = this.props.product;
     const { cart } = this.props.cart;
 
-    const items = cart.sort().map(item => ({
-      id: item.id,
-      title: products.find(product => product.id === item.id).title,
-      price: products.find(product => product.id === item.id).price,
-      quantity: item.quantity,
-      discount: products.find(product => product.id === item.id).discount,
-      image: products.find(product => product.id === item.id).image,
-    }));
+    const items = cart.sort().map((item) => {
+      const product = products.find(p => p.id === item.id);
+      return {
+        id: item.id,
+        title: product.title,
+        price: product.price,
+        quantity: item.quantity,
+        discount: product.discount,
+        image: product.image,
+        total: computeDiscount({
+          price: product.price,
+          quantity: item.quantity,
+          discount: product.discount,
+        }),
+      };
+    });
 
-    const sum = items.reduce((acc, val) => acc + (val.quantity * val.price), 0);
+    const sum = items.reduce((acc, val) => acc + val.total, 0);
 
     let postContent;
 
@@ -33,7 +42,8 @@ class Cart extends Component {
               <Feed.Date content={item.title} />
               <Feed.Summary>
                 {item.price.toFixed(2)} € x {item.quantity} = {(item.quantity * item.price).toFixed(2)} €
-              </Feed.Summary>
+                {item.total}
+              </Feed.Summary >
             </Feed.Content>
           </Feed.Event>
         ));
