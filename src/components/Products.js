@@ -46,6 +46,7 @@ class Products extends Component {
               <Card.Meta>
                 {`Price: ${product.price.toFixed(2)} €`}
               </Card.Meta>
+              {(product.discount) && (<Card.Meta>Discount: Three for Two!</Card.Meta>)}
 
             </Card.Content>
             <Card.Content extra>
